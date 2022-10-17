@@ -1,0 +1,29 @@
+name: Lint
+
+on:
+  push:
+    branches: [ "development" ]
+    paths-ignore: [ "*.md", ".gitignore", ".github/**", "public/**" ]
+  pull_request:
+    branches: [ "development" ]
+    paths-ignore: [ "*.md", ".gitignore", ".github/**", "public/**" ]
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.17.0
+
+      - name: Install Node Modules
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
