@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 const IndexPage = () => {
       return (
@@ -9,7 +9,6 @@ const IndexPage = () => {
           <h1>Empty</h1>
         </>
       );
-     
 };
   
 export default IndexPage;

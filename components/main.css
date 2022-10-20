@@ -1,0 +1,9 @@
+@import url(https://fonts.bunny.net/css?family=raleway:400|lalezar:400);
+
+body {
+    font-family: 'Lalezar', sans-serif;
+}
+
+.nav {
+    font-family: 'Raleway', sans-serif !important;
+}
