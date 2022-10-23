@@ -1,5 +1,5 @@
 import { withApiAuth } from '@supabase/auth-helpers-nextjs';
-import Cloudflare from "cloudflare";
+import Cloudflare from 'cloudflare';
 let cf = new Cloudflare({ token: process.env.CF_TOKEN });
 
 // @todo #update Allow user to update cname record
