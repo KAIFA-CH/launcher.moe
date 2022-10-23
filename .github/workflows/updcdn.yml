@@ -16,7 +16,7 @@ jobs:
         node-version: 16.x
     
     - name: Install Node Modules & Python Packages
-    - run: |
+      run: |
         npm i
         pip install testresources
     
@@ -27,7 +27,7 @@ jobs:
         envkey_NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPA_ANON_KEY }}
     
     - name: Build Next.js App
-    - run: npm run build
+      run: npm run build
     
     - name: Upload Static Content to Object Storage
       uses: oracle-actions/run-oci-cli-command@v1.1
