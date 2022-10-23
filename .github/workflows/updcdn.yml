@@ -1,0 +1,39 @@
+name: Generate Static and Upload to CDN
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        
+    - run: npm i
+    
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPA_URL }}
+        envkey_NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPA_ANON_KEY }}
+    
+    - run: npm run build
+    
+    - run: pip install testresources
+    
+    - name: Upload Data
+      uses: oracle-actions/run-oci-cli-command@v1.1
+      env:
+        OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+        OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+        OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+        OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+        OCI_CLI_REGION: 'uk-london-1'
+      with:
+        command: 'oci os object bulk-upload -bn "cdn-launcher-moe" --src-dir ".next/static/chunks" --prefix "_next/static/chunks/" --overwrite'
