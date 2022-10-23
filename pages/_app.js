@@ -4,7 +4,7 @@ import colortheme from '../components/theme';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import '../components/main.css';
-const theme = extendTheme({config: {initialColorMode: 'dark', disableTransitionOnChange: false}, colortheme});
+const theme = extendTheme({config: {initialColorMode: 'dark', disableTransitionOnChange: false}, colors: colortheme});
 import NavHead from '../components/navhead';
 
 function newapp({ Component, pageProps}) {
