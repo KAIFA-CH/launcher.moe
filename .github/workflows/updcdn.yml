@@ -30,7 +30,7 @@ jobs:
       run: npm run build
     
     - name: Upload Static Content to Object Storage
-      uses: oracle-actions/run-oci-cli-command@v1.1
+      uses: oracle-actions/run-oci-cli-command@v1.1.1
       env:
         OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
         OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
